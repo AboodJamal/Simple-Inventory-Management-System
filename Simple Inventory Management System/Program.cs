@@ -93,15 +93,56 @@ class Program
                     }
                     if (inventory.IsThere(oldName))
                     {
-                        Console.Write("Enter the new name: ");
-                        string newName = Console.ReadLine();
-                        Console.Write("Enter new price: ");
-                        decimal newPrice = decimal.Parse(Console.ReadLine());
-                        Console.Write("Enter new quantity: ");
-                        int newQuantity = int.Parse(Console.ReadLine());
+                        string newName ;
+                        while (true)
+                        {
+                            Console.Write("Enter the new name: ");
+                            newName = Console.ReadLine();
 
-                        inventory.EditProduct(oldName, newName, newPrice, newQuantity);
-                        Console.WriteLine("Product updated\n");
+                            if (string.IsNullOrWhiteSpace(newName))
+                            {
+                                Console.WriteLine("Invalid name input...Please enter a valid product name (not empty)\n");
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        decimal newPrice;
+                        while (true)
+                        {
+                            Console.Write("Enter the new price: ");
+                            if (decimal.TryParse(Console.ReadLine(), out newPrice))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid price input...Please enter a valid number for the price (numeric)\n");
+                            }
+                        }
+                        int newQuantity;
+                        while (true)
+                        {
+                            Console.Write("Enter the new quantity: ");
+                            if (int.TryParse(Console.ReadLine(), out newQuantity))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid price input...Please enter a valid number for the price (numeric)\n");
+                            }
+                        }
+
+                        if (inventory.EditProduct(oldName, newName, newPrice, newQuantity))
+                        {
+                            Console.WriteLine("Product updated\n");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to update the product. It may not exist.\n");
+                        }
                     }
                     else
                     {
@@ -109,8 +150,21 @@ class Program
                     }
                     break;
                 case 4:
-                    Console.Write("Enter the product name you want to delete: ");
-                    string deleteName = Console.ReadLine();
+                    string deleteName;
+                    while (true)
+                    {
+                        Console.Write("Enter the product name you want to delete: ");
+                        deleteName = Console.ReadLine();
+
+                        if (string.IsNullOrWhiteSpace(deleteName))
+                        {
+                            Console.WriteLine("Invalid name input...Please enter a valid product name (not empty)\n");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     if (inventory.DeleteProduct(deleteName))
                     {
                         Console.WriteLine("Product deleted\n");
@@ -121,8 +175,21 @@ class Program
                     }
                     break;
                 case 5:
-                    Console.Write("Enter the product name you are looking for: ");
-                    string searchName = Console.ReadLine();
+                    string searchName;
+                    while (true)
+                    {
+                        Console.Write("Enter the product name you are looking for: ");
+                        searchName = Console.ReadLine();
+
+                        if (string.IsNullOrWhiteSpace(searchName))
+                        {
+                            Console.WriteLine("Invalid name input...Please enter a valid product name (not empty)\n");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                     Product productWanted = inventory.SearchProduct(searchName);
                     if (productWanted != null)
                     {
@@ -133,6 +200,12 @@ class Program
                     {
                         Console.WriteLine("Product is not found\n");
                     }
+                    break;
+                case 6:
+                    Console.WriteLine("Thank you\n");
+                    return;
+                default:
+                    Console.WriteLine("Invalid option...Please try again by entering a number (1-6)\n");
                     break;
             }
         }
