@@ -36,7 +36,7 @@ namespace Simple_Inventory_Management_System.Domain
         {
             foreach (var product in products)
             {
-                if (((product.Name).Trim()).Equals(testName, StringComparison.OrdinalIgnoreCase)) 
+                if (((product.Name).Trim()).Equals(testName.Trim(), StringComparison.OrdinalIgnoreCase)) 
                 {
                     return true;
                 }
@@ -53,6 +53,18 @@ namespace Simple_Inventory_Management_System.Domain
                         product.Price = newPrice;
                         product.Quantity = newQuantity;
                         return true;
+                }
+            }
+            return false;
+        }
+        public bool DeleteProduct(string name)
+        {
+            for (int i = 0; i < products.Count; i++)
+            {
+                if ((products[i].Name).Equals(name.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    products.RemoveAt(i);
+                    return true;
                 }
             }
             return false;

@@ -101,11 +101,23 @@ class Program
                         int newQuantity = int.Parse(Console.ReadLine());
 
                         inventory.EditProduct(oldName, newName, newPrice, newQuantity);
-                        Console.WriteLine("Product updated.");
+                        Console.WriteLine("Product updated");
                     }
                     else
                     {
-                        Console.WriteLine("Product is not found.");
+                        Console.WriteLine("Product is not found");
+                    }
+                    break;
+                case 4:
+                    Console.Write("Enter the product name you want to delete: ");
+                    string deleteName = Console.ReadLine();
+                    if (inventory.DeleteProduct(deleteName))
+                    {
+                        Console.WriteLine("Product deleted");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Product is not found");
                     }
                     break;
             }
