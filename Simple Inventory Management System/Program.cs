@@ -69,11 +69,44 @@ class Program
                         }
                         
                     }
-                    inventory.AddProduct(new Product(productName, productPrice, productQuantity));
+                    inventory.AddProduct(new Product(productName.Trim(), productPrice, productQuantity));
                     break;
 
                 case 2:
                     inventory.ViewProducts();
+                    break;
+                case 3:
+                    string oldName;
+                    while (true)
+                    {
+                        Console.Write("Enter the product name you want to edit: ");
+                        oldName = Console.ReadLine();
+
+                        if (string.IsNullOrWhiteSpace(oldName))
+                        {
+                            Console.WriteLine("Invalid name input...Please enter a valid product name (not empty)\n");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    if (inventory.IsThere(oldName))
+                    {
+                        Console.Write("Enter the new name: ");
+                        string newName = Console.ReadLine();
+                        Console.Write("Enter new price: ");
+                        decimal newPrice = decimal.Parse(Console.ReadLine());
+                        Console.Write("Enter new quantity: ");
+                        int newQuantity = int.Parse(Console.ReadLine());
+
+                        inventory.EditProduct(oldName, newName, newPrice, newQuantity);
+                        Console.WriteLine("Product updated.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Product is not found.");
+                    }
                     break;
             }
         }

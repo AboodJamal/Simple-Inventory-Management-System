@@ -32,5 +32,30 @@ namespace Simple_Inventory_Management_System.Domain
                 Console.WriteLine();
             }
         }
+        public bool IsThere(string testName)
+        {
+            foreach (var product in products)
+            {
+                if (((product.Name).Trim()).Equals(testName, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool EditProduct(string oldName, string newName, decimal newPrice, int newQuantity)
+        {
+            foreach (var product in products)
+            {
+                if ((product.Name).Equals(oldName.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                        product.Name = newName;
+                        product.Price = newPrice;
+                        product.Quantity = newQuantity;
+                        return true;
+                }
+            }
+            return false;
+        }
     }
 }
