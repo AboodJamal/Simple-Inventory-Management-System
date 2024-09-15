@@ -20,7 +20,7 @@ class Program
             int userChoice;
             if (!int.TryParse(Console.ReadLine(), out userChoice))
             {
-                Console.WriteLine("Invalid input...Please enter a number only (1-6)");
+                Console.WriteLine("Invalid input...Please enter a number only (1-6)\n");
                 continue;
             }
 
@@ -35,7 +35,7 @@ class Program
 
                         if (string.IsNullOrWhiteSpace(productName)) 
                         {
-                            Console.WriteLine("Invalid name input...Please enter a valid product name (not empty).");
+                            Console.WriteLine("Invalid name input...Please enter a valid product name (not empty)\n");
                         }
                         else
                         {
@@ -52,7 +52,7 @@ class Program
                         }
                         else
                         {
-                            Console.WriteLine("Invalid price input...Please enter a valid number for the price (numeric).");
+                            Console.WriteLine("Invalid price input...Please enter a valid number for the price (numeric)\n");
                         }
                     }
                     int productQuantity; 
@@ -61,7 +61,7 @@ class Program
                         Console.Write("Enter the product quantity: ");
                         if (!int.TryParse(Console.ReadLine(), out productQuantity))
                         {
-                            Console.WriteLine("Invalid input for quantity...Please enter a valid number for the quantity (numeric)."); 
+                            Console.WriteLine("Invalid input for quantity...Please enter a valid number for the quantity (numeric)\n"); 
                         }
                         else 
                         {
@@ -70,6 +70,10 @@ class Program
                         
                     }
                     inventory.AddProduct(new Product(productName, productPrice, productQuantity));
+                    break;
+
+                case 2:
+                    inventory.ViewProducts();
                     break;
             }
         }

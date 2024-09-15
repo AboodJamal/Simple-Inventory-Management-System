@@ -16,6 +16,21 @@ namespace Simple_Inventory_Management_System.Domain
         public void AddProduct(Product newProduct) 
         {
             products.Add(newProduct); 
-        } 
+        }
+
+        public void ViewProducts()
+        {
+            if (products.Count == 0)
+            {
+                Console.WriteLine("No products in the inventory yet");
+                Console.WriteLine();
+                return;
+            }
+            foreach (var product in products)
+            {
+                Console.WriteLine(product.ToString()); // Console.WriteLine(product);
+                Console.WriteLine();
+            }
+        }
     }
 }
