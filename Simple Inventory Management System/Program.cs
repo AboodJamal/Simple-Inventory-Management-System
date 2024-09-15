@@ -101,11 +101,11 @@ class Program
                         int newQuantity = int.Parse(Console.ReadLine());
 
                         inventory.EditProduct(oldName, newName, newPrice, newQuantity);
-                        Console.WriteLine("Product updated");
+                        Console.WriteLine("Product updated\n");
                     }
                     else
                     {
-                        Console.WriteLine("Product is not found");
+                        Console.WriteLine("Product is not found\n");
                     }
                     break;
                 case 4:
@@ -113,11 +113,25 @@ class Program
                     string deleteName = Console.ReadLine();
                     if (inventory.DeleteProduct(deleteName))
                     {
-                        Console.WriteLine("Product deleted");
+                        Console.WriteLine("Product deleted\n");
                     }
                     else
                     {
-                        Console.WriteLine("Product is not found");
+                        Console.WriteLine("Product is not found\n");
+                    }
+                    break;
+                case 5:
+                    Console.Write("Enter the product name you are looking for: ");
+                    string searchName = Console.ReadLine();
+                    Product productWanted = inventory.SearchProduct(searchName);
+                    if (productWanted != null)
+                    {
+                        Console.WriteLine(productWanted); // Console.WriteLine(productWanted.ToString());
+                        Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Product is not found\n");
                     }
                     break;
             }

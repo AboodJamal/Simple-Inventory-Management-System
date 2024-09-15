@@ -69,5 +69,17 @@ namespace Simple_Inventory_Management_System.Domain
             }
             return false;
         }
+
+        public Product SearchProduct(string name)
+        {
+            for (int i = 0; i < products.Count; i++)
+            {
+                if ((products[i].Name).Equals(name.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    return products[i];
+                }
+            }
+            return null;
+        }
     }
 }
