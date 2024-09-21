@@ -8,5 +8,78 @@ namespace Simple_Inventory_Management_System.Domain
 {
     internal class Inventory
     {
+        private List<Product> products; 
+        public Inventory()
+        {
+            products = new List<Product>();
+        }
+        public void AddProduct(Product newProduct) 
+        {
+            products.Add(newProduct); 
+        }
+
+        public void ViewProducts()
+        {
+            if (products.Count == 0)
+            {
+                Console.WriteLine("No products in the inventory yet");
+                Console.WriteLine();
+                return;
+            }
+            foreach (var product in products)
+            {
+                Console.WriteLine(product.ToString()); // Console.WriteLine(product);
+                Console.WriteLine();
+            }
+        }
+        public bool IsThere(string testName)
+        {
+            foreach (var product in products)
+            {
+                if (((product.Name).Trim()).Equals(testName.Trim(), StringComparison.OrdinalIgnoreCase)) 
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool EditProduct(string oldName, string newName, decimal newPrice, int newQuantity)
+        {
+            foreach (var product in products)
+            {
+                if ((product.Name).Equals(oldName.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                        product.Name = newName;
+                        product.Price = newPrice;
+                        product.Quantity = newQuantity;
+                        return true;
+                }
+            }
+            return false;
+        }
+        public bool DeleteProduct(string name)
+        {
+            for (int i = 0; i < products.Count; i++)
+            {
+                if ((products[i].Name).Equals(name.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    products.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Product SearchProduct(string name)
+        {
+            for (int i = 0; i < products.Count; i++)
+            {
+                if ((products[i].Name).Equals(name.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    return products[i];
+                }
+            }
+            return null;
+        }
     }
 }
