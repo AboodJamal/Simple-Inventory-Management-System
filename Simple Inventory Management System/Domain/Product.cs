@@ -18,11 +18,11 @@ namespace Simple_Inventory_Management_System.Domain
         {
             this.Name = name;
             this.Price = price;
-            this.Quantity = quantity; 
+            this.Quantity = quantity;
         }
         public override string ToString()
         {
-            return $"- Product name : {Name}\n- Price: ${Price}\n- Quantity: {Quantity}"; 
+            return $"- Product name : {Name}\n- Price: ${Price}\n- Quantity: {Quantity}";
         }
     }
 }
